@@ -56,6 +56,10 @@ setup(
         'cloud': cloud_dependencies,
         'all': postgres_dependencies + deep_learning_dependencies + cloud_dependencies
     },
+    entry_points='''
+        [console_scripts]
+        simpleml=simpleml.utils.cli:cli
+    ''',
     zip_safe=False,
     test_suite='nose.collector',
     tests_require=['nose'],
