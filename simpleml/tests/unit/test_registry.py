@@ -44,7 +44,12 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(class_name, registry.registry)
         self.assertEqual(FakeClass, registry.get(class_name))
 
-        # Try again
+        # Try again - same instantiation
+        registry.register(FakeClass)
+
+        # Last time - different class, same name
+        class FakeClass(object):
+            pass
         with self.assertRaises(ValueError):
             registry.register(FakeClass)
 
@@ -81,3 +86,7 @@ class MetaRegistryTests(unittest.TestCase):
         # Test
         self.assertIn(class_name, SIMPLEML_REGISTRY.registry)
         self.assertEqual(fake_class, SIMPLEML_REGISTRY.get(class_name))
+
+
+if __name__ == '__main__':
+    unittest.main()
